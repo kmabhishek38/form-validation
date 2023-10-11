@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walk-In Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mains container">
+        <div class=" playbackSet row pt-3 ">
+            <video class="video1" autoplay muted loop>
+                <source src="./people_-_84973 (1080p).mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="formSet    row justify-content-center">    
+            <form id="myform" class="" onsubmit=" validateForm()">
+            
+                <div class="">  
+                    <div class=" boxsizing">
+                        <label for="NAME">
+                            Name
+                        </label><br>
+                        <input type="text" name="NAME" id="name" class="boxsizing" placeholder="Enter your name" maxlength="100" required>
+                        
+                        <div id="name-error" class="boxsizing"  style="color: red!important;display:none; padding-left: 80px;">
+                            Please enter your name.
+                        </div>
+                    </div> 
+
+                    <div class="boxsizing ">
+                        <label for="email">
+                            E-mail
+                        </label><br>
+                        <input type="email" id="email" name="E-mail"class="boxsizing" placeholder="Enter your e-mail" required>
+                        
+                        <div id="hello" style="color: red; padding-left: 80px; font-size: 16px;" ></div>
+                    </div>  
+
+                    <div class="boxsizing ">
+                        <label for="Number">
+                            Number
+                        </label><br>
+                        <input type="text" id="number" name="Number" placeholder="Mobile number" minlength="10" maxlength="10" required>
+                        
+                        <div id="result" class="" style="color: red; padding-left: 80px; font-size: 16px;" ></div>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <div class=" FlexSet col-5">
+                            <label for="From-Date" >
+                                From
+                            </label>
+                            <input type="date" id="from" class="FlexSet" name="From-Date" required onchange="validateDate()">
+                        </div>
+                        <div class="FlexSet col-5">
+                            <label for="To-Date" style="padding-left: 30px;">
+                                To
+                            </label>
+                            <input type="date" id="to" class="FlexSet" name="To-Date"required onchange="validateDate()">
+                        </div>
+                    </div>
+                    <div id="dateError" class="d-flex" style="color: red; padding-left: 80px; font-size: 16px;"></div>
+                    
+                    <div class="d-flex" >  
+                        <div class=" FlexSet col-5">
+                            <label for="password">
+                                Password
+                            </label>
+                            <input type="password"   name="password" id="password" value="" placeholder="Password">
+                            
+                        </div>
+                        <div class="FlexSet  col-5">
+                            <label for="confirm_password">
+                                Confirm Password
+                            </label>
+                            <input type="password"   name="confirm_password" value="" placeholder="Confirm Password" id="confirmPassword" onkeyup="validatePassword()">
+                        </div>
+                    </div>
+                    <small id="password_error" class="text-secondary"  style="color: red !important; display: none; padding-left: 90px;">
+                        Passwords do not match.
+                    </small> 
+
+                    
+                   <div class="buttt pt-3">
+                        <button class=" " type="submit" onclick="validateForm()" >
+                            Submit 
+                        </button>
+                    </div>
+                </div>
+
+    
+            </form>
+        </div>   
+        
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+
+        function validateForm(){
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phoneNumber = document.getElementById("number").value;
+            var fromDate = document.getElementById("from").value;
+            var toDate = document.getElementById("to").value;
+            var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+            var nameError = document.getElementById("name-error");
+            if (name === "") {
+                    nameError.style.display="block";
+                } else {
+                    nameError.style.display = "none";
+                }
+
+                
+            if (pattern.test(email)) {
+                        document.getElementById("hello").innerHTML = "";
+                    } else {
+                        document.getElementById("hello").innerHTML = "Invalid email address.";
+                    }
+                    var pattern = /^[789]{1}[0-9]{9}$/;
+
+                    if (pattern.test(phoneNumber)) {
+                        document.getElementById("result").innerHTML = "";
+                    } else {
+                        document.getElementById("result").innerHTML = "Invalid phone number.";
+                    }
+
+                    if (new Date(toDate) < new Date(fromDate)) {
+                            document.getElementById("dateError").innerHTML = "To date must be after From date.";
+                        } else {
+                            document.getElementById("dateError").innerHTML = "";
+                        }
+        }
+
+
+    function validatePassword() {
+        var passwordInput = document.getElementById("password");
+        var confirmInput = document.getElementById("confirmPassword");
+        var passwordError = document.getElementById("password_error");
+        if (passwordInput.value !== confirmInput.value) {
+            passwordError.style.display = "block";
+        } else {
+            passwordError.style.display = "none";
+        }
+    }
+    </script>
+    
+</body>
+</html>
